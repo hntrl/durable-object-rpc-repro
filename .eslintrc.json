@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "examples",
+    "scripts",
+    "assets",
+    ".storybook",
+    "jest.config.js",
+    "*.js",
+    "*.test.ts"
+  ]
+}
