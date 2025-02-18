@@ -1,4 +1,4 @@
-import { DurableObject } from "cloudflare:workers";
+import { DurableObject, RpcTarget } from "cloudflare:workers";
 
 export class FooDurableObject extends DurableObject {
   private counterValue: number = 0;
@@ -11,19 +11,32 @@ export class FooDurableObject extends DurableObject {
     });
   }
 
-  async getCounterValue() {
-    return this.counterValue;
-  }
+  private rpcTarget = class extends RpcTarget {
+    private stub: FooDurableObject;
 
-  async increment(amount = 1) {
-    this.counterValue += amount;
-    await this.ctx.storage.put("value", this.counterValue);
-    return this.counterValue;
-  }
+    constructor(stub: FooDurableObject) {
+      super();
+      this.stub = stub;
+    }
 
-  async decrement(amount = 1) {
-    this.counterValue -= amount;
-    await this.ctx.storage.put("value", this.counterValue);
-    return this.counterValue;
+    async getCounterValue() {
+      return this.stub.counterValue;
+    }
+
+    async increment(amount = 1) {
+      this.stub.counterValue += amount;
+      await this.stub.ctx.storage.put("value", this.stub.counterValue);
+      return this.stub.counterValue;
+    }
+
+    async decrement(amount = 1) {
+      this.stub.counterValue -= amount;
+      await this.stub.ctx.storage.put("value", this.stub.counterValue);
+      return this.stub.counterValue;
+    }
+  };
+
+  getRpcTarget() {
+    return new this.rpcTarget(this);
   }
 }

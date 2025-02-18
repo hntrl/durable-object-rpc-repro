@@ -4,7 +4,7 @@ export default {
     const pathname = url.pathname;
 
     if (pathname === "/foo") {
-      const counter = await env.WORKER_A.getCounter("constant");
+      const counter = env.WORKER_A.getCounter("constant");
       const value = await counter.increment();
       return new Response(value.toString());
     } else if (pathname === "/bar") {
