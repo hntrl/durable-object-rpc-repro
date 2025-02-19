@@ -19,6 +19,10 @@ export class FooDurableObject extends DurableObject {
       this.stub = stub;
     }
 
+    async complexReturnType() {
+      return { a: "foo", b: "bar" };
+    }
+
     async getCounterValue() {
       return this.stub.counterValue;
     }
