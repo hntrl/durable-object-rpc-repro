@@ -1,16 +1,13 @@
-import { WorkerEntrypoint } from "cloudflare:workers";
-import { BarRpcTarget } from "./bar";
+import { RpcTarget, WorkerEntrypoint } from "cloudflare:workers";
 
-export default class WorkerA extends WorkerEntrypoint<Env> {
-  async getCounter(id: string) {
-    const obj = this.env.FOO_OBJECT.idFromName(id);
-    const stub = this.env.FOO_OBJECT.get(obj);
-    return stub.getRpcTarget();
-  }
-  async getBar() {
-    const bar = new BarRpcTarget();
-    return bar;
+class FooTarget extends RpcTarget {
+  async getFoo() {
+    return "foo";
   }
 }
 
-export { FooDurableObject } from "./foo";
+export default class WorkerA extends WorkerEntrypoint<Env> {
+  get foo() {
+    return new FooTarget();
+  }
+}

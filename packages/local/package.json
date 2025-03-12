@@ -1,0 +1,13 @@
+{
+  "name": "local",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src",
+    "dev": "pnpm run wrangler:dev"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250311.0",
+    "wrangler": "3.114.1"
+  }
+}

@@ -1,6 +1,7 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "durable-object-repro-b"
-main = "src/worker.ts"
-compatibility_date = "2024-12-18"
+workers_dev = true
+name = "durable-object-repro-local"
+compatibility_date = "2024-11-18"
+main = "src/index.ts"
 
 services = [{ binding = "WORKER_A", service = "durable-object-repro-a" }]
