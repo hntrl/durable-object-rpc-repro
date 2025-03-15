@@ -1,6 +1,6 @@
 #:schema node_modules/wrangler/config-schema.json
 workers_dev = true
-name = "durable-object-repro-local"
+name = "durable-object-repro-proxy"
 compatibility_date = "2024-11-18"
 main = "src/index.ts"
 

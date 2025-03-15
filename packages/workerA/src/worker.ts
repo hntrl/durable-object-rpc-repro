@@ -10,4 +10,12 @@ export default class WorkerA extends WorkerEntrypoint<Env> {
   get foo() {
     return new FooTarget();
   }
+
+  getBar() {
+    return "bar";
+  }
+
+  get baz() {
+    return "baz";
+  }
 }

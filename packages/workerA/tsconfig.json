@@ -18,7 +18,6 @@
     "paths": {                        /* Specifies custom module name mappings. */
 			"@/*": ["./src/*"]
     },
-		"types": ["@cloudflare/workers-types/2023-07-01"],  /* Specifies the types to include in the compilation. */
 
 		/* Emit */
 		"declaration": false,     /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
